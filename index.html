@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Braze Preview</title>
+    <link rel="icon" href="data:," />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <h1 class="brand">braze-x</h1>
+      <nav id="templates" class="templates"></nav>
+    </aside>
+    <main class="main">
+      <header class="toolbar">
+        <div id="title" class="title"></div>
+        <span id="status" class="status"></span>
+        <div class="viewports" role="group" aria-label="Viewport">
+          <button type="button" data-viewport="desktop">Desktop</button>
+          <button type="button" data-viewport="mobile">Mobile</button>
+        </div>
+      </header>
+      <pre id="message" class="message" hidden></pre>
+      <div class="stage">
+        <iframe
+          id="preview"
+          class="preview"
+          title="Rendered template"
+          sandbox="allow-same-origin allow-popups"
+        ></iframe>
+      </div>
+    </main>
+    <script type="module" src="/src/client/main.ts"></script>
+  </body>
+</html>

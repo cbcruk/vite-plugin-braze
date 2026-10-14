@@ -1,0 +1,313 @@
+{
+  "user_id": 10001,
+  "first_name": "홍길동",
+  "data": {
+    "id": 1,
+    "name": "",
+    "duty_tag_type_id": 507,
+    "duty_tag": "경영·비즈니스",
+    "annual": 3,
+    "positions": [
+      {
+        "id": 100001,
+        "company": {
+          "id": 9001,
+          "industry_name": "IT, 컨텐츠",
+          "name": "알파랩스"
+        },
+        "logo_img": "https://placehold.co/160x160.png?text=A",
+        "annual_from": 0,
+        "annual_to": -1,
+        "apply_count": 10,
+        "response_count": 10,
+        "response_rate": 0.97,
+        "due_date": null,
+        "confirm_date": "2024-06-10T00:00:00",
+        "address": {
+          "full_location": "서울 샘플구 샘플로 1",
+          "country": "한국",
+          "location": "서울"
+        },
+        "position": "신입 사업개발 매니저",
+        "category": "경영·비즈니스",
+        "sub_categories": ["사업개발·기획자"],
+        "is_bookmark": false
+      },
+      {
+        "id": 100002,
+        "company": {
+          "id": 9002,
+          "industry_name": "IT, 컨텐츠",
+          "name": "베타커머스"
+        },
+        "logo_img": "https://placehold.co/160x160.PNG?text=B",
+        "annual_from": 0,
+        "annual_to": 100,
+        "apply_count": 17,
+        "response_count": 16,
+        "response_rate": 0.92,
+        "due_date": "2024-06-30T00:00:00",
+        "confirm_date": "2024-06-10T00:00:00",
+        "address": {
+          "full_location": "서울 샘플구 샘플로 2",
+          "country": "한국",
+          "location": "서울"
+        },
+        "position": "사업 PM (신입 이상)",
+        "category": "경영·비즈니스",
+        "sub_categories": ["사업개발·기획자"],
+        "is_bookmark": false
+      },
+      {
+        "id": 100003,
+        "company": {
+          "id": 9003,
+          "industry_name": "IT, 컨텐츠",
+          "name": "감마헬스"
+        },
+        "logo_img": "https://placehold.co/160x160.jpg?text=C",
+        "annual_from": 0,
+        "annual_to": 5,
+        "apply_count": 24,
+        "response_count": 19,
+        "response_rate": 0.8,
+        "due_date": null,
+        "confirm_date": "2024-06-10T00:00:00",
+        "address": {
+          "full_location": "경기 샘플구 샘플로 3",
+          "country": "한국",
+          "location": "경기"
+        },
+        "position": "전략기획 담당자",
+        "category": "경영·비즈니스",
+        "sub_categories": ["사업개발·기획자"],
+        "is_bookmark": false
+      },
+      {
+        "id": 100004,
+        "company": {
+          "id": 9004,
+          "industry_name": "IT, 컨텐츠",
+          "name": "델타모빌리티"
+        },
+        "logo_img": "https://placehold.co/160x160.png?text=D",
+        "annual_from": 3,
+        "annual_to": 100,
+        "apply_count": 31,
+        "response_count": 19,
+        "response_rate": 0.6,
+        "due_date": "2024-07-06T00:00:00",
+        "confirm_date": "2024-06-10T00:00:00",
+        "address": {
+          "full_location": "서울 샘플구 샘플로 4",
+          "country": "한국",
+          "location": "서울"
+        },
+        "position": "해외사업 리드",
+        "category": "경영·비즈니스",
+        "sub_categories": ["사업개발·기획자"],
+        "is_bookmark": false
+      },
+      {
+        "id": 100005,
+        "company": {
+          "id": 9005,
+          "industry_name": "IT, 컨텐츠",
+          "name": "엡실론에듀"
+        },
+        "logo_img": "https://placehold.co/160x160.png?text=E",
+        "annual_from": 3,
+        "annual_to": 7,
+        "apply_count": 38,
+        "response_count": 36,
+        "response_rate": 0.95,
+        "due_date": "2024-06-19T00:00:00",
+        "confirm_date": "2024-06-10T00:00:00",
+        "address": {
+          "full_location": "부산 샘플구 샘플로 5",
+          "country": "한국",
+          "location": "부산"
+        },
+        "position": "서비스 기획자",
+        "category": "경영·비즈니스",
+        "sub_categories": ["사업개발·기획자"],
+        "is_bookmark": false
+      },
+      {
+        "id": 100006,
+        "company": {
+          "id": 9006,
+          "industry_name": "IT, 컨텐츠",
+          "name": "제타핀테크"
+        },
+        "logo_img": "https://placehold.co/160x160.png?text=F",
+        "annual_from": 5,
+        "annual_to": 5,
+        "apply_count": 45,
+        "response_count": 41,
+        "response_rate": 0.9,
+        "due_date": null,
+        "confirm_date": "2024-06-10T00:00:00",
+        "address": {
+          "full_location": "서울 샘플구 샘플로 6",
+          "country": "한국",
+          "location": "서울"
+        },
+        "position": "프로덕트 매니저",
+        "category": "경영·비즈니스",
+        "sub_categories": ["사업개발·기획자"],
+        "is_bookmark": false
+      },
+      {
+        "id": 100007,
+        "company": {
+          "id": 9007,
+          "industry_name": "IT, 컨텐츠",
+          "name": "에타게임즈"
+        },
+        "logo_img": "https://placehold.co/160x160.png?text=G",
+        "annual_from": 0,
+        "annual_to": 0,
+        "apply_count": 52,
+        "response_count": 39,
+        "response_rate": 0.75,
+        "due_date": "2024-06-28T00:00:00",
+        "confirm_date": "2024-06-10T00:00:00",
+        "address": {
+          "full_location": "경기 샘플구 샘플로 7",
+          "country": "한국",
+          "location": "경기"
+        },
+        "position": "운영 매니저",
+        "category": "경영·비즈니스",
+        "sub_categories": ["사업개발·기획자"],
+        "is_bookmark": false
+      },
+      {
+        "id": 100008,
+        "company": {
+          "id": 9008,
+          "industry_name": "IT, 컨텐츠",
+          "name": "세타로보틱스"
+        },
+        "logo_img": "https://placehold.co/160x160.png?text=H",
+        "annual_from": 10,
+        "annual_to": 20,
+        "apply_count": 59,
+        "response_count": 0,
+        "response_rate": 0,
+        "due_date": null,
+        "confirm_date": "2024-06-10T00:00:00",
+        "address": {
+          "full_location": "서울 샘플구 샘플로 8",
+          "country": "한국",
+          "location": "서울"
+        },
+        "position": "최고전략책임자(CSO)",
+        "category": "경영·비즈니스",
+        "sub_categories": ["사업개발·기획자"],
+        "is_bookmark": false
+      },
+      {
+        "id": 100009,
+        "company": {
+          "id": 9009,
+          "industry_name": "IT, 컨텐츠",
+          "name": "이오타푸드"
+        },
+        "logo_img": "https://placehold.co/160x160.jpg?text=I",
+        "annual_from": 5,
+        "annual_to": 15,
+        "apply_count": 66,
+        "response_count": 66,
+        "response_rate": 1,
+        "due_date": "2024-06-30T00:00:00",
+        "confirm_date": "2024-06-10T00:00:00",
+        "address": {
+          "full_location": "대전 샘플구 샘플로 9",
+          "country": "한국",
+          "location": "대전"
+        },
+        "position": "사업기획/관리 담당자 (PM)",
+        "category": "경영·비즈니스",
+        "sub_categories": ["사업개발·기획자"],
+        "is_bookmark": false
+      },
+      {
+        "id": 100010,
+        "company": {
+          "id": 9010,
+          "industry_name": "IT, 컨텐츠",
+          "name": "카파미디어"
+        },
+        "logo_img": "https://placehold.co/160x160.png?text=J",
+        "annual_from": 2,
+        "annual_to": 20,
+        "apply_count": 73,
+        "response_count": 37,
+        "response_rate": 0.5,
+        "due_date": null,
+        "confirm_date": "2024-06-10T00:00:00",
+        "address": {
+          "full_location": "서울 샘플구 샘플로 10",
+          "country": "한국",
+          "location": "서울"
+        },
+        "position": "경영지원 및 정부과제 담당자",
+        "category": "경영·비즈니스",
+        "sub_categories": ["사업개발·기획자"],
+        "is_bookmark": false
+      },
+      {
+        "id": 100011,
+        "company": {
+          "id": 9011,
+          "industry_name": "IT, 컨텐츠",
+          "name": "람다클라우드"
+        },
+        "logo_img": "https://placehold.co/160x160.png?text=K",
+        "annual_from": 5,
+        "annual_to": 13,
+        "apply_count": 80,
+        "response_count": 70,
+        "response_rate": 0.88,
+        "due_date": "2024-06-20T00:00:00",
+        "confirm_date": "2024-06-10T00:00:00",
+        "address": {
+          "full_location": "서울 샘플구 샘플로 11",
+          "country": "한국",
+          "location": "서울"
+        },
+        "position": "B2B 플랫폼 서비스 기획 — 직무명이 두 줄 이상으로 길어지는 경우의 레이아웃 확인용",
+        "category": "경영·비즈니스",
+        "sub_categories": ["사업개발·기획자"],
+        "is_bookmark": false
+      },
+      {
+        "id": 100012,
+        "company": {
+          "id": 9012,
+          "industry_name": "IT, 컨텐츠",
+          "name": "뮤바이오"
+        },
+        "logo_img": "https://placehold.co/160x160.png?text=L",
+        "annual_from": 7,
+        "annual_to": 15,
+        "apply_count": 87,
+        "response_count": 26,
+        "response_rate": 0.3,
+        "due_date": null,
+        "confirm_date": "2024-06-10T00:00:00",
+        "address": {
+          "full_location": "경기 샘플구 샘플로 12",
+          "country": "한국",
+          "location": "경기"
+        },
+        "position": "사업개발 담당자",
+        "category": "경영·비즈니스",
+        "sub_categories": ["사업개발·기획자"],
+        "is_bookmark": false
+      }
+    ]
+  }
+}

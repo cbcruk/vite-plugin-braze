@@ -1,0 +1,187 @@
+:root {
+  --bg: #f4f4f7;
+  --surface: #ffffff;
+  --border: #dfe0e2;
+  --text: #1e1e1e;
+  --muted: #6b6b70;
+  --accent: #0066ff;
+  --ok: #16833a;
+  --warn: #b25e00;
+  --error: #c62828;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #17171a;
+    --surface: #202024;
+    --border: #34343a;
+    --text: #ececef;
+    --muted: #9a9aa2;
+    --accent: #5c9bff;
+    --ok: #4cc472;
+    --warn: #f0a33c;
+    --error: #ff6b6b;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  height: 100vh;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font:
+    13px/1.5 ui-sans-serif,
+    system-ui,
+    sans-serif;
+}
+
+.sidebar {
+  overflow-y: auto;
+  padding: 16px;
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.brand {
+  margin: 0 0 16px;
+  font:
+    600 14px ui-monospace,
+    monospace;
+}
+
+.templates h2 {
+  margin: 16px 0 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.templates a {
+  display: block;
+  padding: 4px 8px;
+  border-radius: 6px;
+  color: inherit;
+  text-decoration: none;
+  font-family: ui-monospace, monospace;
+}
+
+.templates a:hover {
+  background: var(--bg);
+}
+
+.templates a[aria-current='page'] {
+  background: var(--accent);
+  color: #fff;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.title {
+  font-family: ui-monospace, monospace;
+  font-weight: 600;
+}
+
+.status {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status[data-status='ok'] {
+  color: var(--ok);
+}
+
+.status[data-status='aborted'] {
+  color: var(--warn);
+}
+
+.status[data-status='error'] {
+  color: var(--error);
+}
+
+.viewports {
+  display: flex;
+  margin-left: auto;
+}
+
+.viewports button {
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.viewports button:first-child {
+  border-radius: 6px 0 0 6px;
+}
+
+.viewports button:last-child {
+  border-radius: 0 6px 6px 0;
+  border-left: 0;
+}
+
+.viewports button[aria-pressed='true'] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.message {
+  margin: 16px 16px 0;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid currentColor;
+  white-space: pre-wrap;
+  font:
+    12px/1.5 ui-monospace,
+    monospace;
+}
+
+.message[data-status='aborted'] {
+  color: var(--warn);
+}
+
+.message[data-status='error'] {
+  color: var(--error);
+}
+
+.stage {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  overflow: auto;
+  padding: 16px;
+}
+
+.preview {
+  width: 100%;
+  max-width: var(--preview-width, 100%);
+  height: 100%;
+  border: 1px solid var(--border);
+  background: #fff;
+}
+
+.preview[hidden] {
+  display: none;
+}

@@ -1,0 +1,351 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="format-detection" content="date=no" />
+	<meta name="format-detection" content="address=no" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="x-apple-disable-message-reformatting" />
+	<title>Wanted Newsletter Template v1</title>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Roboto&display=swap" rel="stylesheet">
+	<style type="text/css" media="screen">
+		/* Linked Styles */
+		body { padding:0 !important; margin:0 !important; display:block !important; min-width:100% !important; width:100% !important; background:#f4f4f7; -webkit-text-size-adjust:none; }
+		a { color:#1e1e1e; text-decoration:none; }
+		p { padding:0 !important; margin:0 !important }
+		img { -ms-interpolation-mode: bicubic; /* Allow smoother rendering of resized image in Internet Explorer */ }
+		
+		.td { width:652px; min-width:652px; font-size:0pt; line-height:0pt; padding:40px 0px 40px 0px; margin:0; font-weight:normal; margin:0; }
+		.content { padding: 40px; }
+		.mobile-block { display: none; }
+		.mobile-align { vertical-align: middle; }
+		.mobile-align2 { vertical-align: text-top; }
+
+		/* Mobile styles */
+		@media only screen and (max-device-width: 400px), only screen and (max-width: 400px) {
+			.mobile-shell { width: 100% !important; min-width: 100% !important; }
+			.center { margin: 0 auto !important; }
+			.td { width: 100% !important; min-width: 100% !important; padding: 0 !important; }
+			.content { padding: 40px 20px !important; }
+			.mobile-block { display: block !important; }
+			.mobile-hide { display: none !important; }
+			.mobile-align { vertical-align: text-top !important; }
+			.mobile-align2 { vertical-align: middle !important; }
+		}
+	</style>
+</head>
+<body class="body" style="padding:0 !important; margin:0 !important; display:block !important; min-width:100% !important; width:100% !important; background:#f4f4f7; -webkit-text-size-adjust:none">
+{% assign POSITION_LIST_ENDPOINT="https://ml-rs.wanted.co.kr/v1.1-latest/positions/user" %}
+{% capture POSITION_LIST_URL %}
+    {{POSITION_LIST_ENDPOINT}}/{{${user_id}}}?limit=12&no_cache=false&client=braze
+{% endcapture %}
+{% assign API_URL="https://ml-rs.wanted.co.kr/v1.1-latest/positions/user/{{${user_id}}}?limit=12&no_cache=false&client=braze" %}
+{% capture MY_PROFILE_EDIT_LINK %}
+  https://airbridge.wanted.co.kr/@wantedlab/email?campaign=recruit_recommend_new_position&content=weekly_new_position_my_profile&og_tag_id=61866034&routing_short_id=y1r2pn&sub_id=braze_mkt&tracking_template_id=0b288af7393ee8e2a0d356897df173da&ad_type=click&term={{ "now" | date: "%Y%m%d" }}
+{% endcapture %}
+
+{% comment %} {% connected_content "https://ml-rs.wanted.co.kr/v1.1-latest/positions/user/{{${user_id}}}?limit=12&no_cache=false&client=braze" :save data :retry %} {% endcomment %}
+
+{% if data == nil %}
+  {% abort_message("api data is null") %}
+{% elsif data.positions.size < 3 %}
+  {% abort_message("api data size is empty") %}
+{% else %}
+  {% capture WDLIST_LINK %}
+    https://airbridge.wanted.co.kr/@wantedlab/email?campaign=recruit_recommend_new_position&content=weekly_new_position_total&job.id={{ data.duty_tag_type_id }}&og_tag_id=61863662&routing_short_id=imjqop&sub_id=braze_mkt&tracking_template_id=e085e36082031011cd77a645c663bfd2&ad_type=click&term={{ "now" | date: "%Y%m%d" }}
+  {% endcapture %}
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#f4f4f7">
+    <tr>
+      <td align="center" valign="top">
+        <table width="652" border="0" cellspacing="0" cellpadding="0" class="mobile-shell">
+          <tr>
+            <td class="td">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff">
+                <tr>
+                  <td class="content">
+                    <!-- Header -->
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td>
+                          <div class="img" style="font-size:0pt; font-family: 'Noto Sans KR','Roboto', sans-serif; line-height:0pt;"><img src="https://braze-images.com/appboy/communication/assets/image_assets/images/651e27b4d3cd63004cc627b9/original.png?1696475060" alt="" width="100" border="0" /></div>
+                        </td>
+                      </tr>
+                    </table>
+                    <!-- END Header -->
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff">
+                      <tr style="height: 20px;"></tr>
+                      <tr style="height: 1px; background-color: #dfe0e2;">
+                        <td></td>
+                      </tr>
+                      <tr style="height: 40px;"></tr>
+                      <tr>
+                        <td>
+                          <h1 style="color:#1e1e1e; font-size:24px; font-family: 'Noto Sans KR','Roboto', sans-serif; line-height:28px; font-weight:600; text-align:center; margin: 0;">
+                            {{${first_name} | default: '회원'}}님을 위해  {{data.duty_tag}} 직군 신규 포지션을 모아봤어요.
+                          </h1>
+                          <p style="height: 15px;"></p>
+                          <p style="font-size: 16px; color: #47474b; text-align: center; line-height: 26px;">원티드에는 상시 모집 공고가 많습니다.<br />지금 바로 포지션을 확인해 보세요</p>
+                        </td>
+                      </tr>
+
+                      {% if data.annual == nil %}
+                        <tr style="height: 25px;"></tr>
+                        <tr>
+                          <td style="padding-top: 30px; padding-bottom: 30px; background: #F7F7F8; text-align: center;">
+                            <img src="https://braze-images.com/appboy/communication/assets/image_assets/images/6641c7edd6ed6a00590e83cf/original.png?1715587053" alt="" width="24" height="24" />
+                            <div style="height: 10px;"></div>
+                            <div style="font-size: 14px; color: #47474b; line-height: 22px;">
+                              신규 포지션은 연차 정보가 없을 경우 전체 연차를 기준으로 추천됩니다.
+                              <br />
+                              연차에 가까운 포지션만 원하실 경우 연차 정보를 업데이트 해주세요.
+                            </div>
+                            <div style="height: 20px;"></div>
+                            <div style="text-align: center">
+                              <a href="{{ MY_PROFILE_EDIT_LINK }}" style="padding: 7px 14px; border-radius: 6px; border: 1px solid #47474b; font-size: 13px; font-weight: 600; line-height: 18px;">설정하러 가기</a>
+                            </div>
+                          </td>
+                        </tr>
+                      {% endif %}
+
+                      <tr>
+                        <td>
+                          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            {% for position in data.positions %}
+                              {% if forloop.index == 13 %}
+                                {% break %}
+                              {% endif %}
+
+                              {% capture position_link %}
+                                https://airbridge.wanted.co.kr/@wantedlab/email?campaign=recruit_recommend_new_position&content=weekly_new_position&job.id={{position.id}}&og_tag_id=61592215&routing_short_id=pzfgi2&sub_id=braze_mkt&tracking_template_id=984d425fbb597724c28252741c3b1e62&ad_type=click&term={{ "now" | date: "%Y%m%d" }}
+                              {% endcapture %}
+
+                              <tr style="height: 40px;"></tr>
+                              <tr>
+                                <td style="width: 80px; font-size: 14px; line-height: 20px; color: #171719;">
+                                  <img src="{{ position.logo_img | replace: '.PNG', '.png' }}" width="80" height="80" style="border-radius: 8px; border: 1px solid #dfdfdf; object-fit: contain;" />
+                                  <div style="height: 5px;"></div>
+                                  <a href="{{ position_link }}" style="text-decoration: underline;">{{ position.company.name }}</a>
+                                </td>
+                                <td style="width: 20px;" />
+                                <td style="vertical-align: top;">
+                                  <a href="{{ position_link }}" style="display: block; font-size: 20px; color: #171719; line-height: 28px; font-weight: 600; letter-spacing: -0.24px;">{{ position.position }}</a>
+                                  <div style="height: 5px;"></div>
+                                  <div style="font-size: 15px; color: #858588; line-height: 22px;">
+                                    <span>{{ position.address.location }}</span>
+                                    <span style="margin-right: 1px; margin-left: 1px;">•</span>
+                                    {% capture display_annual_label %}
+                                      {% if position.annual_from == 0 and position.annual_to <= 0 %}
+                                        신입
+                                      {% elsif position.annual_from == 0 and position.annual_to == 100 %}
+                                        신입 이상
+                                      {% elsif position.annual_from == 0 and position.annual_to != 100 %}
+                                        신입-경력 {{ position.annual_to }}년
+                                      {% elsif position.annual_from != 0 and position.annual_to == 100 %}
+                                        경력 {{position.annual_from}}년 이상
+                                      {% elsif position.annual_from != position.annual_to %}
+                                        경력 {{position.annual_from}}년-{{position.annual_to}}년
+                                      {% elsif position.annual_from == position.annual_to %}
+                                        경력 {{position.annual_from}}년
+                                      {% else %}
+                                        ''
+                                      {% endif %}
+                                    {% endcapture %}
+                                    <span>{{ display_annual_label }}</span>
+                                  </div>
+                                  <div style="height: 5px;"></div>
+                                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                      <td style="font-size: 15px; color: #47474b; line-height: 22px;">
+
+                                        {% assign position_response_rate = position.response_rate | times: 100 %}
+
+                                        {% if position_response_rate >= 75 %}
+                                          {% capture response_rate %}
+                                            {% if position_response_rate >= 95 %}
+                                              매우높음
+                                            {% elsif position_response_rate >= 90 and position_response_rate < 95 %}
+                                              높음
+                                            {% elsif position_response_rate >= 75 and position_response_rate < 90 %}
+                                              평균이상
+                                            {% endif %}
+                                          {% endcapture %}
+                                          <strong style="color: #171719; font-weight: 500;">응답률</strong> {{ response_rate }} •
+                                        {% endif %}
+
+                                        {% if position.due_date == nil %}
+                                          <strong style="color: #171719;">상시채용</strong>
+                                        {% else %}
+                                          <strong style="color: #171719; font-weight: 500;">마감일</strong> {{ position.due_date | date: '%y.%m.%d' }}
+                                        {% endif %}
+                                      </td>
+                                      <td style="text-align: right;">
+                                        <a href="{{ position_link }}" style="font-size: 14px; font-weight: 600; color: #858588; line-height: 20px;">
+                                          자세히 보기
+                                          <img src="https://braze-images.com/appboy/communication/assets/image_assets/images/6641c689f2490c0058ced0b3/original.png" alt="" width="16" height="16" style="vertical-align: middle;" />
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            {% endfor %}
+                          </table>
+                        </td>
+                      </tr>
+
+                      <tr style="height: 40px;"></tr>
+                      
+                      <tr>
+                        <td>
+                          <a href="{{ WDLIST_LINK }}" style="display: block; padding: 12px 28px; border-radius: 12px; background-color: #06F; font-size: 16px; font-weight: 600; text-align: center; line-height: 24px; color: #fff;">포지션 더 보러 가기</a>
+                        </td>
+                      </tr>
+
+                      {% if data.annual != nil %}
+                        {% if data.name == blank %}
+                          {% assign display_name = '회원' %}
+                        {% else %}
+                          {% assign display_name = data.name %}
+                        {% endif %}
+                        <tr style="height: 40px;"></tr>
+                        <tr>
+                          <td style="padding-top: 30px; padding-bottom: 30px; background: #F7F7F8; text-align: center;">
+                            <div style="font-size: 20px; font-weight: 600; line-height: 28px; color: #171719;">{{ display_name }} 님, #{{ data.duty_tag }} 직군이 아닌가요?</div>
+                            <div style="height: 10px;"></div>
+                            <div style="font-size: 14px; color: #47474b; line-height: 22px;">신규 포지션은 {{ display_name }}님의 직군과 연차에 맞춰 추천됩니다.</div>
+                            <div style="height: 20px;"></div>
+                            <div style="text-align: center">
+                              <a href="{{ MY_PROFILE_EDIT_LINK }}" style="padding: 7px 14px; border-radius: 6px; border: 1px solid #47474b; font-size: 13px; font-weight: 600; line-height: 18px;">설정하러 가기</a>
+                            </div>
+                          </td>
+                        </tr>
+                      {% endif %}
+                    </table>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td bgcolor="#f4f4f7">
+                  <!-- Follow -->
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnFollowBlock" style="min-width:100%;">
+                        <tbody class="mcnFollowBlockOuter">
+                            <tr>
+                                <td align="center" valign="top" style="padding:9px" class="mcnFollowBlockInner">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnFollowContentContainer" style="min-width:100%;">
+                                        <tbody>
+                                            <tr>
+                                                <td align="center" style="padding-left:9px; padding-right:9px;">
+                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%;" class="mcnFollowContent">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td align="center" valign="top" style="padding-top:10px; padding-right:9px; padding-left:9px;">
+                                                                    <table align="center" border="0" cellpadding="0" cellspacing="0">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td align="center" valign="top">
+                                                                                    <table align="left" border="0" cellpadding="0" cellspacing="0" class="mcnFollowStacked" style="display:inline;">
+
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td align="left" valign="top" class="mcnFollowIconContent" style="padding-right:10px; padding-bottom:9px;">
+                                                                                                    <a href="https://www.facebook.com/wantedkr/" target="_blank" rel="noreferrer"><img src="https://appboy-images.com/appboy/communication/assets/image_assets/images/5e5f141dd518e103bd6a97d8/original.png?1583289373" alt="Facebook" class="mcnFollowBlockIcon" width="30" style="width:30px; max-width:30px; display:block;"></a>
+                                                                                                </td>
+                                                                                            </tr>
+
+
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                    <table align="left" border="0" cellpadding="0" cellspacing="0" class="mcnFollowStacked" style="display:inline;">
+
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td align="center" valign="top" class="mcnFollowIconContent" style="padding-right:10px; padding-bottom:9px;">
+                                                                                                    <a href="https://www.instagram.com/wantedjobs.kr/" target="_blank" rel="noreferrer"><img src="https://appboy-images.com/appboy/communication/assets/image_assets/images/5e5f141d125ebf4492306f2b/original.png?1583289373" alt="Link" class="mcnFollowBlockIcon" width="30" style="width:30px; max-width:30px; display:block;"></a>
+                                                                                                </td>
+                                                                                            </tr>
+
+
+                                                                                        </tbody>
+                                                                                    </table>
+
+                                                                                    <table align="left" border="0" cellpadding="0" cellspacing="0" class="mcnFollowStacked" style="display:inline;">
+
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td align="center" valign="top" class="mcnFollowIconContent" style="padding-right:10px; padding-bottom:9px;">
+                                                                                                    <a href="https://www.youtube.com/channel/UC0tGZ6MqieGG2m5lA5PeQsw" target="_blank" rel="noreferrer"><img src="https://appboy-images.com/appboy/communication/assets/image_assets/images/5e5f141d9196ee206adbedfa/original.png?1583289373" alt="Youtube" class="mcnFollowBlockIcon" width="30" style="width:30px; max-width:30px; display:block;"></a>
+                                                                                                </td>
+                                                                                            </tr>
+
+
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                    <table align="left" border="0" cellpadding="0" cellspacing="0" class="mcnFollowStacked" style="display:inline;">
+
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td align="center" valign="top" class="mcnFollowIconContent" style="padding-right:0; padding-bottom:9px;">
+                                                                                                    <a href="https://career.wanted.co.kr/" target="_blank" rel="noreferrer"><img src="https://appboy-images.com/appboy/communication/assets/image_assets/images/5e5f141da12f7404ea5feb15/original.png?1583289373" alt="Blog" class="mcnFollowBlockIcon" width="30" style="width:30px; max-width:30px; display:block;"></a>
+                                                                                                </td>
+                                                                                            </tr>
+
+
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- END Follow -->
+                    <!-- Footer -->
+                    <table bgcolor="#f4f4f7" border="0" cellpadding="0" cellspacing="0" width="100%">
+                      <tbody>
+                        <tr>
+                          <td class="footer" style="padding:0px 0px 0px 0px">
+                          <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tbody>
+                              <tr>
+                                <td style="color:#212124; font-size:10px; font-family: 'Noto Sans KR','Roboto', sans-serif;line-height:20px; text-align:center">
+                                  <p style="color:#212124; font-size:10px; line-height:20px; text-align:center">본 이메일은 구직 상태를 '현재 구직 중'이거나 '관심 있음'으로 설정하여<br>면접 제안을 받는 경우 발송됩니다.</p>
+                                
+                                  
+                                  <p style="color:#212124; font-size:10px; font-family: 'Noto Sans KR','Roboto', sans-serif;line-height:20px; text-align:center">
+                                    (주)원티드랩 | 서울 송파구 올림픽로 300 | 02-539-7118
+                                  </p>
+                                  <p style="color:#212124; font-size:10px; line-height:20px; text-align:center">Copyright © Wantedlab Inc. All rights reserved.</p>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!-- END Footer -->
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+{% endif %}
+</body>
+</html>

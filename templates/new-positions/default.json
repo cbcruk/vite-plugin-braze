@@ -1,0 +1,42 @@
+{
+  "first_name": "홍길동",
+  "last_name": "",
+  "custom_attribute": {
+    "email_key": "bW9jay1lbWFpbC1rZXk="
+  },
+  "api_trigger_properties": {
+    "company": {
+      "company_id": 9001,
+      "company_name": "알파랩스",
+      "logo_img": "https://placehold.co/160x160.png?text=Alpha"
+    },
+    "job_group": "디자인",
+    "jobs": [
+      {
+        "main_tasks": "- 브랜드 아이덴티티 구축 및 유지\n- 마케팅 자료 디자인\n- 다양한 매체용 그래픽 작업\n- 네 번째 줄은 잘려야 함",
+        "position_name": "그래픽 및 브랜드 디자이너",
+        "wd_id": 200001
+      },
+      {
+        "main_tasks": "- 디지털 콘텐츠 모션 그래픽 디자인\n- 비디오 편집 및 애니메이션 제작",
+        "position_name": "모션 그래픽 디자이너",
+        "wd_id": 200002
+      },
+      {
+        "main_tasks": "- 제품 외관 및 UI 디자인\n- 사용성 테스트 및 피드백 반영\n- 디자인 컨셉 및 시안 개발",
+        "position_name": "산업 및 제품 디자이너",
+        "wd_id": 200003
+      },
+      {
+        "main_tasks": "- 웹사이트 비주얼 및 UX 디자인\n- 프론트엔드 개발팀과 협업\n- 사용성 테스트 기반 개선",
+        "position_name": "웹 및 인터랙션 디자이너",
+        "wd_id": 200004
+      },
+      {
+        "main_tasks": "- 디자인 시스템 운영\n- 컴포넌트 문서화",
+        "position_name": "프로덕트 디자이너",
+        "wd_id": 200005
+      }
+    ]
+  }
+}

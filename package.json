@@ -1,0 +1,21 @@
+{
+  "name": "braze-x",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vp dev",
+    "test": "vp test",
+    "test:run": "vp test run",
+    "typecheck": "tsc --noEmit",
+    "check": "vp check"
+  },
+  "dependencies": {
+    "brazejs": "^1.7.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "typescript": "^7.0.2",
+    "vite": "catalog:",
+    "vite-plus": "catalog:"
+  }
+}
