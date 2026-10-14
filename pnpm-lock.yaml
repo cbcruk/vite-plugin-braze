@@ -19,10 +19,6 @@ overrides:
 importers:
 
   .:
-    dependencies:
-      brazejs:
-        specifier: ^1.7.1
-        version: 1.7.1
     devDependencies:
       '@types/node':
         specifier: ^26.6.5
@@ -33,6 +29,28 @@ importers:
       vite:
         specifier: 'catalog:'
         version: '@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.5)(typescript@7.0.2)'
+      vite-plugin-braze:
+        specifier: workspace:*
+        version: link:packages/vite-plugin-braze
+      vite-plus:
+        specifier: 'catalog:'
+        version: 1.1.0(@types/node@26.6.5)(@vitest/ui@5.0.3(vitest@5.0.3))(typescript@7.0.2)
+
+  packages/vite-plugin-braze:
+    dependencies:
+      brazejs:
+        specifier: ^1.7.1
+        version: 1.7.1
+      vite:
+        specifier: npm:@voidzero-dev/vite-plus-core@1.1.0
+        version: '@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.5)(typescript@7.0.2)'
+    devDependencies:
+      '@types/node':
+        specifier: ^26.6.5
+        version: 26.6.5
+      typescript:
+        specifier: ^7.0.2
+        version: 7.0.2
       vite-plus:
         specifier: 'catalog:'
         version: 1.1.0(@types/node@26.6.5)(@vitest/ui@5.0.3(vitest@5.0.3))(typescript@7.0.2)

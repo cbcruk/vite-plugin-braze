@@ -1,6 +1,6 @@
 import './main.css'
 import type { TemplateEntry } from '../catalog/catalog.types.ts'
-import { fetchRender, fetchTemplates } from './preview-api.ts'
+import { fetchRender, fetchTemplates, subscribeChanges } from './preview-api.ts'
 import {
   applyViewport,
   queryElements,
@@ -50,7 +50,4 @@ for (const button of elements.viewportButtons) {
 window.addEventListener('hashchange', () => void show())
 applyViewport(elements, 'desktop')
 void refresh()
-
-if (import.meta.hot) {
-  import.meta.hot.on('braze:change', () => void refresh())
-}
+subscribeChanges(() => void refresh())

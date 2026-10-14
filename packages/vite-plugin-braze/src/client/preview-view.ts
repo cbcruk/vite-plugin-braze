@@ -97,7 +97,7 @@ export function renderEmpty({ title, status, message, frame }: PreviewElements):
   message.hidden = false
   delete message.dataset.status
   message.textContent =
-    'No templates found. Add templates/<name>/template.liquid and a <scenario>.json next to it.'
+    'No templates found. Add <root>/<template>/template.liquid and a <scenario>.json next to it.'
   frame.hidden = true
 }
 

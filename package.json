@@ -3,19 +3,18 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vp dev",
-    "test": "vp test",
-    "test:run": "vp test run",
-    "typecheck": "tsc --noEmit",
+    "build": "pnpm --filter vite-plugin-braze build",
+    "dev": "pnpm build && vp dev",
+    "test": "pnpm build && vp test",
+    "test:run": "pnpm build && vp test run",
+    "typecheck": "pnpm build && tsc --noEmit && pnpm --filter vite-plugin-braze typecheck",
     "check": "vp check"
-  },
-  "dependencies": {
-    "brazejs": "^1.7.1"
   },
   "devDependencies": {
     "@types/node": "^26.6.5",
     "typescript": "^7.0.2",
     "vite": "catalog:",
+    "vite-plugin-braze": "workspace:*",
     "vite-plus": "catalog:"
   }
 }

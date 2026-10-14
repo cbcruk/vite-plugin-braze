@@ -27,7 +27,7 @@ brazejs는 컨텍스트 객체의 최상위 키로 Braze 속성을 흉내 낸다
 
 ## brazejs 동작에서 확인한 것
 
-- **`abort_message`가 정상 출력처럼 반환된다.** `renderFile()`과 `parseAndRender()`는 `AbortError`를 잡아서 메시지 문자열을 렌더 결과로 돌려준다. `"api data is null"`이 본문인지 발송 중단인지 구분할 수 없다. 그래서 현재 도구는 `engine.parse()`와 `engine.render()`를 따로 호출해 `AbortError`를 직접 받는다 (`src/render/render.ts`).
+- **`abort_message`가 정상 출력처럼 반환된다.** `renderFile()`과 `parseAndRender()`는 `AbortError`를 잡아서 메시지 문자열을 렌더 결과로 돌려준다. `"api data is null"`이 본문인지 발송 중단인지 구분할 수 없다. 그래서 현재 도구는 `engine.parse()`와 `engine.render()`를 따로 호출해 `AbortError`를 직접 받는다 (`packages/vite-plugin-braze/src/render/render.ts`).
 - **`{% abort_message() %}`처럼 인자가 없으면** 메시지는 `message is aborted`가 된다.
 - **객체를 그대로 출력하면 Ruby 해시 형태로 나온다.** `{{api_trigger_properties.${company}}}` → `{"name"=>"C"}`. Braze와 같은 동작이다.
 - **`"now" | date`는 실행 시각에 따라 달라진다.** 스냅샷 테스트에서는 `vi.setSystemTime`과 `TZ=Asia/Seoul`로 고정한다.
@@ -54,6 +54,8 @@ brazejs는 컨텍스트 객체의 최상위 키로 Braze 속성을 흉내 낸다
 
 ## 현재 도구의 설계 결정
 
-- **Vite 플러그인(`src/plugin/braze-preview.ts`):** 렌더링은 파일시스템이 필요해 Node에서 하고, 개발 서버·파일 감시·HMR 채널·클라이언트 빌드는 Vite 것을 쓴다. Vitest가 같은 설정을 공유한다.
-- **템플릿을 모듈 그래프에 넣지 않음:** 기존 실험은 `.liquid`를 `transform`으로 모듈화했지만, 템플릿 하나를 여러 시나리오로 렌더링하고 `ok/aborted/error` 상태를 함께 넘겨야 해서 미들웨어 API(`/__braze/templates`, `/__braze/render`)로 바꿨다. 파일이 바뀌면 `braze:change` 이벤트로 클라이언트가 다시 가져간다.
-- **렌더 코드는 Vite와 분리:** `src/render`, `src/catalog`은 Vite에 의존하지 않는다. CI용 CLI나 다른 서버가 필요하면 이 두 모듈만 가져다 쓰면 된다.
+- **npm 패키지(`packages/vite-plugin-braze`):** 렌더링은 파일시스템이 필요해 Node에서 하고, 개발 서버와 파일 감시는 Vite 것을 쓴다. 루트 프로젝트는 이 패키지를 `workspace:*`로 설치해 배포 산출물(`dist`)을 그대로 쓴다.
+- **템플릿을 모듈 그래프에 넣지 않음:** 기존 실험은 `.liquid`를 `transform`으로 모듈화했지만, 템플릿 하나를 여러 시나리오로 렌더링하고 `ok/aborted/error` 상태를 함께 넘겨야 해서 미들웨어 API(`/__braze/api/templates`, `/__braze/api/render`)로 바꿨다.
+- **미리보기 UI는 미리 빌드해서 제공:** 사용하는 프로젝트에 `index.html`이나 클라이언트 코드를 요구하지 않도록 UI를 `dist/client`로 빌드해 `/__braze/`에서 정적 파일로 낸다. 빌드된 UI에서는 `import.meta.hot`을 쓸 수 없어서, 파일 변경은 Vite HMR 대신 SSE(`/__braze/api/events`)로 알린다.
+- **테스트 헬퍼는 테스트 API를 주입받음:** `defineBrazeSnapshots(vitest, options)`처럼 호출하는 쪽의 `vitest`(또는 `vite-plus/test`) 네임스페이스를 받는다. 패키지가 직접 `vitest`를 import하면 다른 러너 인스턴스가 잡혀 테스트가 등록되지 않을 수 있기 때문이다.
+- **렌더 코드는 Vite와 분리:** `src/render`, `src/catalog`은 Vite에 의존하지 않고 `listTemplates`, `renderScenario`로 export된다. CI용 CLI나 다른 서버가 필요하면 이 둘만 가져다 쓰면 된다.

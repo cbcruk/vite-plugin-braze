@@ -14,6 +14,11 @@ export function fetchRender({ template, scenario }: Selection): Promise<RenderRe
   return fetchJson(`${API_BASE}/render?${params}`)
 }
 
+/** Calls `onChange` whenever a file under the templates root changes. */
+export function subscribeChanges(onChange: () => void): void {
+  new EventSource(`${API_BASE}/events`).addEventListener('message', onChange)
+}
+
 async function fetchJson<T>(url: string): Promise<T> {
   const res = await fetch(url)
   if (!res.ok) throw new Error(`${res.status} ${res.statusText}: ${url}`)

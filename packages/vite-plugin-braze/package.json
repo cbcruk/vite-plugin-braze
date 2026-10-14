@@ -1,0 +1,49 @@
+{
+  "name": "vite-plugin-braze",
+  "version": "0.1.0",
+  "description": "Preview and snapshot-test Braze Liquid templates with Vite",
+  "keywords": [
+    "braze",
+    "email",
+    "liquid",
+    "snapshot",
+    "vite-plugin"
+  ],
+  "license": "MIT",
+  "author": "Eunsoo Lee",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cbcruk/braze-x.git",
+    "directory": "packages/vite-plugin-braze"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./test": "./dist/test.mjs",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "vp pack && vp build",
+    "dev": "vp dev",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "pnpm build"
+  },
+  "dependencies": {
+    "brazejs": "^1.7.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "typescript": "^7.0.2",
+    "vite": "catalog:",
+    "vite-plus": "catalog:"
+  },
+  "peerDependencies": {
+    "vite": ">=6"
+  },
+  "engines": {
+    "node": ">=20.19.0"
+  }
+}

@@ -1,10 +1,13 @@
 import { defineConfig } from 'vite-plus'
-import { brazePreview } from './src/plugin/braze-preview.ts'
+import { brazePreview } from 'vite-plugin-braze'
 
 export default defineConfig({
   plugins: [brazePreview({ root: 'templates' })],
+  server: {
+    open: '/__braze/',
+  },
   fmt: {
-    ignorePatterns: ['test/__snapshots__/**'],
+    ignorePatterns: ['test/__snapshots__/**', '**/dist/**'],
     singleQuote: true,
     semi: false,
   },

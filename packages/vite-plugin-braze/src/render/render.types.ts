@@ -2,7 +2,9 @@
 export interface RenderRequest {
   /** Absolute path of the templates root directory. */
   root: string
+  /** Template directory name under `root`. */
   template: string
+  /** Scenario name, i.e. the mock data file name without `.json`. */
   scenario: string
 }
 

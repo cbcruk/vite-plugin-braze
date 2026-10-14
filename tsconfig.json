@@ -3,8 +3,8 @@
     "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "types": ["node", "vite/client"],
+    "lib": ["ES2022"],
+    "types": ["node"],
     "strict": true,
     "noEmit": true,
     "allowImportingTsExtensions": true,
@@ -15,5 +15,5 @@
     "noUnusedParameters": true,
     "noUncheckedIndexedAccess": true
   },
-  "include": ["src", "test", "vite.config.ts"]
+  "include": ["test", "vite.config.ts"]
 }
