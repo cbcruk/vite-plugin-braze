@@ -1,6 +1,44 @@
-# braze-x
+# vite-plugin-braze
 
-Braze Liquid 템플릿을 로컬에서 미리보기하고 스냅샷 테스트하는 도구. 실제 기능은 npm 배포용 패키지 [`vite-plugin-braze`](packages/vite-plugin-braze)에 있고, 루트는 그 패키지를 사용하는 실제 템플릿 저장소다. 실험 이력과 Braze Liquid 관련 메모는 [docs/braze-liquid-notes.md](docs/braze-liquid-notes.md) 참고.
+[![npm](https://img.shields.io/npm/v/vite-plugin-braze)](https://www.npmjs.com/package/vite-plugin-braze)
+
+Braze Liquid 템플릿을 Vite 개발 서버에서 미리보기하고 Vitest로 스냅샷 테스트하는 플러그인. 렌더링은 [brazejs](https://github.com/yq314/brazejs)를 사용한다. Braze, Inc.와 무관한 비공식 도구다.
+
+- 패키지 소스와 영문 문서: [packages/vite-plugin-braze](packages/vite-plugin-braze)
+- 실험 이력과 Braze Liquid 메모: [docs/braze-liquid-notes.md](docs/braze-liquid-notes.md)
+
+## 설치
+
+```sh
+pnpm add -D vite-plugin-braze
+```
+
+```ts
+// vite.config.ts
+import { defineConfig } from 'vite'
+import { brazePreview } from 'vite-plugin-braze'
+
+export default defineConfig({
+  plugins: [brazePreview({ root: 'templates' })],
+})
+```
+
+```ts
+// test/templates.test.ts
+import * as vitest from 'vitest' // vite-plus 사용 시 'vite-plus/test'
+import { defineBrazeSnapshots } from 'vite-plugin-braze/test'
+
+await defineBrazeSnapshots(vitest, {
+  root: 'templates',
+  now: '2024-06-12T09:00:00+09:00',
+})
+```
+
+`vite`를 띄운 뒤 `http://localhost:5173/__braze/`에서 미리보기한다. 옵션 전체는 [패키지 README](packages/vite-plugin-braze/README.md) 참고.
+
+## 이 저장소에서 개발하기
+
+루트는 패키지를 `workspace:*`로 설치해 실제 템플릿에 적용해 보는 프로젝트다.
 
 ## 구조
 
@@ -10,7 +48,7 @@ templates/                    # 템플릿과 목 데이터 시나리오
 test/                         # 스냅샷 테스트 (vite-plugin-braze/test 사용)
 ```
 
-## 사용법
+### 명령어
 
 ```sh
 pnpm install
@@ -22,7 +60,7 @@ pnpm check      # vp check (포맷 + 린트)
 
 미리보기 UI 자체를 고칠 때는 `pnpm --filter vite-plugin-braze dev`로 소스에서 바로 띄운다 (UI HMR 동작, 템플릿은 루트 `templates/` 사용).
 
-## 템플릿 추가
+### 템플릿 추가
 
 ```
 templates/
@@ -39,7 +77,7 @@ templates/
 - `api_trigger_properties.${key}` → `"api_trigger_properties": { "key": ... }`
 - `connected_content :save data` 결과 → `"data"` 에 응답 JSON을 직접 넣고, 태그는 `{% comment %}` 처리
 
-## 렌더 결과
+### 렌더 결과
 
 | 상태     | 의미                                        | 스냅샷                                          |
 | -------- | ------------------------------------------- | ----------------------------------------------- |
@@ -51,10 +89,13 @@ templates/
 
 ## 배포
 
-```sh
-cd packages/vite-plugin-braze
-pnpm publish    # prepublishOnly에서 빌드
-```
+1. `packages/vite-plugin-braze/package.json`의 `version`을 올리고 커밋한다.
+2. Claude Code 밖의 터미널에서 배포한다. npm 2FA 브라우저 인증이 TTY를 요구한다.
+   ```sh
+   pnpm --filter vite-plugin-braze publish --access public   # prepublishOnly에서 빌드
+   ```
+3. 단계적 배포(staged publishing)라서 npmjs.com에서 승인해야 `latest`로 공개된다. 승인 전에는 `0.0.0-stage` 임시 버전만 보인다.
+4. 배포한 커밋에 `v<version>` 태그를 붙여 push한다.
 
 ## 주의
 
