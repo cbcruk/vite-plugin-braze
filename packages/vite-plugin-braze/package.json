@@ -13,7 +13,7 @@
   "author": "Eunsoo Lee",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cbcruk/braze-x.git",
+    "url": "git+https://github.com/cbcruk/vite-plugin-braze.git",
     "directory": "packages/vite-plugin-braze"
   },
   "files": [
