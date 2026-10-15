@@ -2,12 +2,12 @@
 
 [![npm](https://img.shields.io/npm/v/vite-plugin-braze)](https://www.npmjs.com/package/vite-plugin-braze)
 
-Braze Liquid 템플릿을 Vite 개발 서버에서 미리보기하고 Vitest로 스냅샷 테스트하는 플러그인. 렌더링은 [brazejs](https://github.com/yq314/brazejs)를 사용한다. Braze, Inc.와 무관한 비공식 도구다.
+A Vite plugin for previewing Braze Liquid templates in the dev server and snapshot-testing them with Vitest. Rendering is powered by [brazejs](https://github.com/yq314/brazejs). This is an unofficial tool, not affiliated with Braze, Inc.
 
-- 패키지 소스와 영문 문서: [packages/vite-plugin-braze](packages/vite-plugin-braze)
-- 실험 이력과 Braze Liquid 메모: [docs/braze-liquid-notes.md](docs/braze-liquid-notes.md)
+- Package source and docs: [packages/vite-plugin-braze](packages/vite-plugin-braze)
+- Experiment history and Braze Liquid notes: [docs/braze-liquid-notes.md](docs/braze-liquid-notes.md)
 
-## 설치
+## Installation
 
 ```sh
 pnpm add -D vite-plugin-braze
@@ -25,7 +25,7 @@ export default defineConfig({
 
 ```ts
 // test/templates.test.ts
-import * as vitest from 'vitest' // vite-plus 사용 시 'vite-plus/test'
+import * as vitest from 'vitest' // use 'vite-plus/test' with vite-plus
 import { defineBrazeSnapshots } from 'vite-plugin-braze/test'
 
 await defineBrazeSnapshots(vitest, {
@@ -34,69 +34,69 @@ await defineBrazeSnapshots(vitest, {
 })
 ```
 
-`vite`를 띄운 뒤 `http://localhost:5173/__braze/`에서 미리보기한다. 옵션 전체는 [패키지 README](packages/vite-plugin-braze/README.md) 참고.
+Start `vite` and open `http://localhost:5173/__braze/` to preview. See the [package README](packages/vite-plugin-braze/README.md) for all options.
 
-## 이 저장소에서 개발하기
+## Developing in this repository
 
-루트는 패키지를 `workspace:*`로 설치해 실제 템플릿에 적용해 보는 프로젝트다.
+The root is a project that installs the package via `workspace:*` and applies it to real templates.
 
-## 구조
+## Structure
 
 ```
-packages/vite-plugin-braze/   # 배포 패키지 (플러그인, 미리보기 UI, 테스트 헬퍼)
-templates/                    # 템플릿과 목 데이터 시나리오
-test/                         # 스냅샷 테스트 (vite-plugin-braze/test 사용)
+packages/vite-plugin-braze/   # Published package (plugin, preview UI, test helpers)
+templates/                    # Templates and mock data scenarios
+test/                         # Snapshot tests (using vite-plugin-braze/test)
 ```
 
-### 명령어
+### Commands
 
 ```sh
 pnpm install
-pnpm dev        # 패키지 빌드 후 미리보기 서버 (http://localhost:5173/__braze/)
-pnpm test       # 패키지 빌드 후 모든 시나리오 스냅샷 테스트
+pnpm dev        # Build the package, then start the preview server (http://localhost:5173/__braze/)
+pnpm test       # Build the package, then snapshot-test every scenario
 pnpm typecheck
-pnpm check      # vp check (포맷 + 린트)
+pnpm check      # vp check (format + lint)
 ```
 
-미리보기 UI 자체를 고칠 때는 `pnpm --filter vite-plugin-braze dev`로 소스에서 바로 띄운다 (UI HMR 동작, 템플릿은 루트 `templates/` 사용).
+When working on the preview UI itself, run `pnpm --filter vite-plugin-braze dev` to serve it straight from source (UI HMR works; templates come from the root `templates/`).
 
-### 템플릿 추가
+### Adding a template
 
 ```
 templates/
   <template-name>/
-    template.liquid     # Braze에 붙여넣을 본문
-    default.json        # 목 데이터 시나리오 (파일명 = 시나리오명)
-    no-data.json        # 분기/abort_message 확인용 시나리오 등
+    template.liquid     # Body to paste into Braze
+    default.json        # Mock data scenario (file name = scenario name)
+    no-data.json        # e.g. a scenario for checking branches / abort_message
 ```
 
-시나리오 JSON의 키는 Braze 컨텍스트에 대응한다.
+Keys in a scenario JSON map to the Braze context.
 
 - `{{${first_name}}}` → `"first_name"`
 - `{{custom_attribute.${key}}}` → `"custom_attribute": { "key": ... }`
 - `api_trigger_properties.${key}` → `"api_trigger_properties": { "key": ... }`
-- `connected_content :save data` 결과 → `"data"` 에 응답 JSON을 직접 넣고, 태그는 `{% comment %}` 처리
+- Result of `connected_content :save data` → put the response JSON directly under `"data"` and wrap the tag in `{% comment %}`
 
-### 렌더 결과
+### Render results
 
-| 상태     | 의미                                        | 스냅샷                                          |
+| Status   | Meaning                                     | Snapshot                                        |
 | -------- | ------------------------------------------- | ----------------------------------------------- |
-| Rendered | 정상 발송되는 본문                          | `test/__snapshots__/<template>/<scenario>.html` |
-| Aborted  | `abort_message` 실행, Braze가 발송하지 않음 | `.../<scenario>.aborted.txt`                    |
-| Error    | 파싱/렌더 실패                              | 테스트 실패                                     |
+| Rendered | Body that is sent normally                  | `test/__snapshots__/<template>/<scenario>.html` |
+| Aborted  | `abort_message` ran, so Braze does not send | `.../<scenario>.aborted.txt`                    |
+| Error    | Parse or render failure                     | Test fails                                      |
 
-테스트는 `"now"` 날짜를 2024-06-12(Asia/Seoul)로 고정한다. 템플릿을 의도적으로 바꿨다면 `pnpm test -u`로 스냅샷을 갱신한다.
+Tests pin the `"now"` date to 2024-06-12 (Asia/Seoul). If you changed a template intentionally, update snapshots with `pnpm test -u`.
 
-## 배포
+## Publishing
 
-1. `packages/vite-plugin-braze/package.json`의 `version`을 올리고 커밋한다.
-2. Claude Code 밖의 터미널에서 배포한다. npm 2FA 브라우저 인증이 TTY를 요구한다.
+1. Bump `version` in `packages/vite-plugin-braze/package.json` and commit.
+2. Publish from a terminal outside Claude Code, since npm 2FA browser authentication requires a TTY.
    ```sh
-   pnpm --filter vite-plugin-braze publish --access public   # prepublishOnly에서 빌드
+   pnpm --filter vite-plugin-braze publish --access public   # builds in prepublishOnly
    ```
-3. 단계적 배포(staged publishing)라서 npmjs.com에서 승인해야 `latest`로 공개된다. 승인 전에는 `0.0.0-stage` 임시 버전만 보인다.
-4. 배포한 커밋에 `v<version>` 태그를 붙여 push한다.
+3. Staged publishing is enabled, so the release becomes `latest` only after approval on npmjs.com. Until then, only a temporary `0.0.0-stage` version is visible.
+4. Tag the published commit as `v<version>` and push the tag.
 
-## 주의
+## Caveats
 
-brazejs는 Braze 구현과 완전히 같지 않다 (`url_escape`, `number_with_delimiter` 등). 최종 확인은 Braze 대시보드 프리뷰에서 한다.
+brazejs does not match Braze's implementation exactly (e.g. `url_escape`, `number_with_delimiter`). Do the final check in the Braze dashboard preview.
